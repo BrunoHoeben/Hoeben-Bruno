@@ -27,8 +27,15 @@
         </nav>
     </header>
     <main>
-        <p>bomen:</p>
+        <ul>
+            <li>soort</li>
+            <li>familie</li>
+            <li>aantal</li>
+            <li>pas aan</li>
+            <li>verwijder</li>
+        </ul>
         <p><%= request.getAttribute("result")%></p>
+        <p>(je moet een boom toevoegen voor de al ingegeven bomen tevoorschijn komen)</p>
     </main>
 </div>
 </body>

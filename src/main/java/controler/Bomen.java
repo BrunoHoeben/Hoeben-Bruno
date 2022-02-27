@@ -10,7 +10,10 @@ public class Bomen {
     private final List<Boom> bomen = new ArrayList<>();
 
     public Bomen(){
-        bomen.add(new Boom("appelboom", "rozenfamilie", 10));
+        bomen.add(new Boom("appelboom", "rozenfamilie", 8));
+        bomen.add(new Boom("berk", "berkenfamilie", 5));
+        bomen.add(new Boom("walnoot", "okkernootfamilie", 3));
+        bomen.add(new Boom("eik", "napjesdragersfamilie", 2));
     }
 
     public void add(Boom boom){
