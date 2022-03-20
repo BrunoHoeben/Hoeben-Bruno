@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="model.Boom" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -13,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>overzicht</title>
     <link rel="stylesheet" href="bomenStyle.css">
+    <link rel="icon" type="image/x-icon" href="fotos/favicon.jpg">
 </head>
 <body>
 <div id="container">
@@ -20,22 +23,36 @@
         <h1>Bomen</h1>
         <nav>
             <ul>
-                <li><a href="index.jsp">home</a></li>
-                <li><a href="voegToe.jsp">voeg toe</a></li>
-                <li><a class="active" href="overzicht.jsp">overzicht</a></li>
+                <li><a href="BoomServlet?command=index">home</a></li>
+                <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
+                <li><a class="active" href="BoomServlet?command=overzicht">overzicht</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <ul>
-            <li>soort</li>
-            <li>familie</li>
-            <li>aantal</li>
-            <li>pas aan</li>
-            <li>verwijder</li>
-        </ul>
-        <p><%= request.getAttribute("result")%></p>
-        <p>(je moet een boom toevoegen voor de al ingegeven bomen tevoorschijn komen)</p>
+        <table>
+            <thead>
+            <tr>
+                <th>naam boom</th>
+                <th>familie boom</th>
+                <th>aantal</th>
+                <th>pas aan</th>
+                <th>verwijder</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                String tableData = "";
+                ArrayList<Boom> boomList = (ArrayList<Boom>) request.getAttribute("bomen");
+                for (Boom boom : boomList){
+                    tableData += String.format("<tr><td>%s</td><td>%s</td><td>%d</td><td>%s</td><td>%s</td>"
+                            , boom.getSoortnaam(), boom.getFamilienaam(), boom.getAantal(), "pas aan", "verwijder");
+                }
+            %>
+            <%=tableData %>
+            </tbody>
+        </table>
+        <p>De boomsoort waar je het meeste van hebt <%=request.getAttribute("meesteBomen")%></p>
     </main>
 </div>
 </body>

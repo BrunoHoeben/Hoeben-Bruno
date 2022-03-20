@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>voegToe</title>
     <link rel="stylesheet" href="bomenStyle.css">
+    <link rel="icon" type="image/x-icon" href="fotos/favicon.jpg">
 </head>
 <body>
 <div id="container">
@@ -21,15 +22,15 @@
         <h1>Bomen</h1>
         <nav>
             <ul>
-                <li><a href="index.jsp">home</a></li>
-                <li><a class="active" href="voegToe.jsp">voeg toe</a></li>
-                <li><a href="overzicht.jsp">overzicht</a></li>
+                <li><a href="BoomServlet?command=index">home</a></li>
+                <li><a class="BoomServlet?command=voegToe" href="voegToe.jsp">voeg toe</a></li>
+                <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h3>voeg hier een boom toe</h3>
-        <form action="BoomServlet" method="get">
+        <form method="post" action="BoomServlet" novalidate>
             <ul>
                 <li>
                     <label for="soort boom">soort boom:</label>
@@ -46,10 +47,11 @@
                 <li>
                     <label for="aantal">aantal:</label>
                     <p></p>
-                    <input type="number" id="aantal" name="aantal" required>
+                    <input type="number" id="aantal" name="aantal" min="0" required>
                     <p></p>
                 </li>
                 <li>
+                    <input type="hidden" name="command" value="form">
                     <button type="submit">voeg toe</button>
                 </li>
             </ul>
