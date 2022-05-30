@@ -36,10 +36,16 @@ public class BoomServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 if (session.getAttribute("zoektermen") == null){
                     List<String> zoektermen = new ArrayList<String>();
-                    zoektermen.add("U zocht nog niet op");
+                    zoektermen.add("U zocht nog niets op");
                     session.setAttribute("zoektermen", zoektermen);
                 }
 
+                Cookie cookie = getCookieWithKey(request, "aantalZoekopdrachten");
+                int aantalZoekopdrachten = 0;
+                if (cookie != null){
+                    aantalZoekopdrachten = Integer.parseInt(cookie.getValue());
+                }
+                response.addCookie(new Cookie("aantalZoekopdrachten", Integer.toString(aantalZoekopdrachten)));
                 request.setAttribute("meesteBomen", bomen.meesteBomen());
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;
@@ -55,11 +61,8 @@ public class BoomServlet extends HttpServlet {
                 break;
 
             case "zoek":
-                if (getCookieWithKey(request, "aantalZoekopdrachten") == null){
-                    response.addCookie(new Cookie("aantalZoekopdrachten", "0"));
-                }
-                Cookie cookie = getCookieWithKey(request, "aantalZoekopdrachten");
-                int aantalZoekopdrachten = Integer.parseInt(cookie.getValue());
+                cookie = getCookieWithKey(request, "aantalZoekopdrachten");
+                aantalZoekopdrachten = Integer.parseInt(cookie.getValue());
                 response.addCookie(new Cookie("aantalZoekopdrachten", Integer.toString(aantalZoekopdrachten)));
                 request.getRequestDispatcher("zoek.jsp").forward(request, response);
                 break;
@@ -94,28 +97,26 @@ public class BoomServlet extends HttpServlet {
                 session.setAttribute("zoektermen", zoektermen);
 
                 ArrayList gevondenSoort = bomen.zoekSoortBomen(zoekSoort);
-                String soortInLijst = "Er zijn geen bomen met deze soortnaam in de lijst";
-                if (!gevondenSoort.isEmpty()){
+                int aantalGevondenSoort = gevondenSoort.size();
+                if (aantalGevondenSoort > 0){
                     cookie = getCookieWithKey(request, "aantalZoekopdrachten");
                     aantalZoekopdrachten = Integer.parseInt(cookie.getValue());
                     aantalZoekopdrachten++;
                     cookie.setValue(String.valueOf(aantalZoekopdrachten));
                     response.addCookie(cookie);
-                    soortInLijst = "We hebben bomen met deze soortnaam gevonden <a href=\"BoomServlet?command=bekijkSoort\">bekijk</a>";
                 }
-                request.setAttribute("gevondenSoort", soortInLijst);
+                request.setAttribute("gevondenSoort", aantalGevondenSoort);
                 String zoekFamilie = request.getParameter("zoek");
                 ArrayList gevondenFamilie = bomen.zoekFamilieBomen(zoekFamilie);
-                String familieInLijst = "Er zijn geen bomen met deze familienaam in de lijst";
-                if (!gevondenFamilie.isEmpty()){
+                int aantalGevondenFamilie = gevondenFamilie.size();
+                if (aantalGevondenFamilie > 0){
                     cookie = getCookieWithKey(request, "aantalZoekopdrachten");
                     aantalZoekopdrachten = Integer.parseInt(cookie.getValue());
                     aantalZoekopdrachten++;
                     cookie.setValue(String.valueOf(aantalZoekopdrachten));
                     response.addCookie(cookie);
-                    familieInLijst = "We hebben bomen met deze familienaam gevonden <a href=\"BoomServlet?command=bekijkFamilie\">bekijk</a>";
                 }
-                request.setAttribute("gevondenFamilie", familieInLijst);
+                request.setAttribute("gevondenFamilie", aantalGevondenFamilie);
                 request.getRequestDispatcher("zoekConfirmatie.jsp").forward(request, response);
                 break;
 

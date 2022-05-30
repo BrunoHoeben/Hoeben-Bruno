@@ -22,10 +22,10 @@
     <h1>Bomen</h1>
     <nav>
       <ul>
-        <li><a class="active" href="BoomServlet?command=index">home</a></li>
-        <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
-        <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
-        <li><a href="BoomServlet?command=zoek">zoek</a></li>
+        <li><a class="active" href="BoomServlet?command=index" id="home">home</a></li>
+        <li><a href="BoomServlet?command=voegToe" id="voeg toe">voeg toe</a></li>
+        <li><a href="BoomServlet?command=overzicht" id="overzicht">overzicht</a></li>
+        <li><a href="BoomServlet?command=zoek" id="zoek">zoek</a></li>
       </ul>
     </nav>
   </header>
@@ -38,7 +38,7 @@
     </c:forEach>
   </main>
   <footer>
-    <p></p>
+    <p>Gemaakt door Bruno Hoeben</p>
   </footer>
 </div>
 </body>

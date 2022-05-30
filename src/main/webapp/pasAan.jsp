@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>voegToe</title>
+    <title>PasAan</title>
     <link rel="stylesheet" href="bomenStyle.css">
     <link rel="icon" type="image/x-icon" href="fotos/favicon.jpg">
 </head>
@@ -22,10 +22,10 @@
         <h1>Bomen</h1>
         <nav>
             <ul>
-                <li><a href="BoomServlet?command=index">home</a></li>
-                <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
-                <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
-                <li><a href="BoomServlet?command=zoek">zoek</a></li>
+                <li><a href="BoomServlet?command=index" id="home">home</a></li>
+                <li><a href="BoomServlet?command=voegToe" id="voeg toe">voeg toe</a></li>
+                <li><a href="BoomServlet?command=overzicht" id="overzicht">overzicht</a></li>
+                <li><a href="BoomServlet?command=zoek" id="zoek">zoek</a></li>
             </ul>
         </nav>
     </header>
@@ -54,13 +54,13 @@
                 </li>
                 <li>
                     <input type="hidden" name="command" value="formPasAan">
-                    <button type="submit">pas aan</button>
+                    <button type="submit" id="pas aan form">pas aan</button>
                 </li>
             </ul>
         </form>
     </main>
     <footer>
-        <p></p>
+        <p>Gemaakt door Bruno Hoeben</p>
     </footer>
 </div>
 </body>

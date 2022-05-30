@@ -21,26 +21,26 @@
         <h1>Bomen</h1>
         <nav>
             <ul>
-                <li><a href="BoomServlet?command=index">home</a></li>
-                <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
-                <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
-                <li><a class="active" href="BoomServlet?command=zoek">zoek</a></li>
+                <li><a href="BoomServlet?command=index" id="home">home</a></li>
+                <li><a href="BoomServlet?command=voegToe" id="voeg toe">voeg toe</a></li>
+                <li><a href="BoomServlet?command=overzicht" id="overzicht">overzicht</a></li>
+                <li><a class="active" href="BoomServlet?command=zoek" id="zoek">zoek</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h3>zoek</h3>
-        <form method="post" action="BoomServlet">
+        <form method="post" action="BoomServlet" novalidate>
             <ul>
                 <li>
                     <label for="zoek">zoek:</label>
                     <p></p>
-                    <input type="text" id="zoek" name="zoek" required>
+                    <input type="text" id="zoek form" name="zoek" required>
                     <p></p>
                 </li>
                 <li>
                     <input type="hidden" name="command" value="zoekBoom">
-                    <button type="submit">zoek</button>
+                    <button type="submit" id="zoek form submit">zoek</button>
                 </li>
             </ul>
         </form>
@@ -51,6 +51,7 @@
             <input type="hidden" name="command" value="reset">
             <button type="submit">reset</button>
         </form>
+        <p>Gemaakt door Bruno Hoeben</p>
     </footer>
 </div>
 </body>

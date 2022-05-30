@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>zoekConfirmatie</title>
+    <title>ZoekConfirmatie</title>
     <link rel="stylesheet" href="bomenStyle.css">
     <link rel="icon" type="image/x-icon" href="fotos/favicon.jpg">
 </head>
@@ -24,34 +24,34 @@
         <h1>Bomen</h1>
         <nav>
             <ul>
-                <li><a href="BoomServlet?command=index">home</a></li>
-                <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
-                <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
-                <li><a class="active" href="BoomServlet?command=zoek">zoek</a></li>
+                <li><a href="BoomServlet?command=index" id="home">home</a></li>
+                <li><a href="BoomServlet?command=voegToe" id="voeg toe">voeg toe</a></li>
+                <li><a href="BoomServlet?command=overzicht" id="overzicht">overzicht</a></li>
+                <li><a class="active" href="BoomServlet?command=zoek" id="zoek">zoek</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <p>${gevondenSoort}</p>
-        <p>${gevondenFamilie}</p>
-       <%--
-            ArrayList<Boom> gevondenSoort = (ArrayList<Boom>) request.getAttribute("gevondenSoort");
-            String inLijst = "";
-            if (!gevondenSoort.isEmpty()){
-                inLijst = "<p>We hebben bomen met deze soortnaam gevonden</p><a href=\"BoomServlet?command=bekijkSoort\">bekijk</a>";
-            }
-            else inLijst = "<p>Er zijn geen bomen met deze soortnaam in de lijst</p>";
+        <c:choose>
+            <c:when test="${gevondenSoort > 0}">
+                <p>We hebben bomen met deze soortnaam gevonden <a href="BoomServlet?command=bekijkSoort" id="gevondenSoort">bekijk.</a></p>
+            </c:when>
+            <c:otherwise>
+                <p>Er staan geen bomen met deze soortnaam in de lijst.</p>
+            </c:otherwise>
+        </c:choose>
 
-            ArrayList<Boom> gevondenFamilie = (ArrayList<Boom>) request.getAttribute("gevondenFamilie");
-            if (!gevondenFamilie.isEmpty()){
-                inLijst += "<p>We hebben bomen met deze familienaam gevonden</p><a href=\"BoomServlet?command=bekijkFamilie\">bekijk</a>";
-            }
-            else inLijst += "<p>Er zijn geen bomen met deze familienaam in de lijst</p>";
-        %>
-        <%=inLijst %>--%>
+        <c:choose>
+            <c:when test="${gevondenFamilie > 0}">
+                <p>We hebben bomen met deze familienaam gevonden <a href="BoomServlet?command=bekijkFamilie" id="gevondenFamilie">bekijk.</a></p>
+            </c:when>
+            <c:otherwise>
+                <p>Er staan geen bomen met deze familienaam in de lijst.</p>
+            </c:otherwise>
+        </c:choose>
     </main>
     <footer>
-        <p></p>
+        <p>Gemaakt door Bruno Hoeben</p>
     </footer>
 </div>
 </body>

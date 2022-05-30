@@ -47,7 +47,7 @@ public class Boom {
     }
 
     public void setAantal(int aantal) {
-        if (aantal < 0){
+        if (aantal <= 0){
             throw new IllegalArgumentException("aantal bomen mag niet kleiner dan 0 zijn");
         }
         this.aantal = aantal;
