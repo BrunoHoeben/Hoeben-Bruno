@@ -5,6 +5,7 @@
   Time: 20:23
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.Boom" %>
 <%@ page import="java.util.ArrayList" %>
@@ -13,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>overzicht</title>
+    <title>Overzicht</title>
     <link rel="stylesheet" href="bomenStyle.css">
     <link rel="icon" type="image/x-icon" href="fotos/favicon.jpg">
 </head>
@@ -23,9 +24,10 @@
         <h1>Bomen</h1>
         <nav>
             <ul>
-                <li><a href="BoomServlet?command=index">home</a></li>
-                <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
-                <li><a class="active" href="BoomServlet?command=overzicht">overzicht</a></li>
+                <li><a href="BoomServlet?command=index" id="home">home</a></li>
+                <li><a href="BoomServlet?command=voegToe" id="voeg toe">voeg toe</a></li>
+                <li><a class="active" href="BoomServlet?command=overzicht" id="overzicht">overzicht</a></li>
+                <li><a href="BoomServlet?command=zoek" id="zoek">zoek</a></li>
             </ul>
         </nav>
     </header>
@@ -41,19 +43,22 @@
             </tr>
             </thead>
             <tbody>
-            <%
-                String tableData = "";
-                ArrayList<Boom> boomList = (ArrayList<Boom>) request.getAttribute("bomen");
-                for (Boom boom : boomList){
-                    tableData += String.format("<tr><td>%s</td><td>%s</td><td>%d</td><td>%s</td><td>%s</td>"
-                            , boom.getSoortnaam(), boom.getFamilienaam(), boom.getAantal(), "pas aan", "verwijder");
-                }
-            %>
-            <%=tableData %>
+            <c:forEach var="boom" items="${bomen}">
+                <tr>
+                    <td>${boom.soortnaam}</td>
+                    <td>${boom.familienaam}</td>
+                    <td>${boom.aantal}</td>
+                    <td><a href="BoomServlet?command=pasAan&ID=${boom.ID}" id="pasAan${boom.ID}">Pas aan</a></td>
+                    <td><a href="BoomServlet?command=verwijderbevestiging&verwijderID=${boom.ID}" id="verwijder${boom.ID}">Verwijder</a></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
-        <p>De boomsoort waar je het meeste van hebt <%=request.getAttribute("meesteBomen")%></p>
+        <p>De boomsoort waar je het meeste van hebt ${meesteBomen}</p>
     </main>
+    <footer>
+        <p>Gemaakt door Bruno Hoeben</p>
+    </footer>
 </div>
 </body>
 </html>
