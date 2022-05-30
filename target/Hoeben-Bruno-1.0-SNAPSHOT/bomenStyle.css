@@ -7,15 +7,15 @@ body{
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 2%;
-    background-color: #d5d5d5;
     font-family: Arial, Helvetica, sans-serif;
+    background-image: url("fotos/bomen.jpg");
 }
 h1, h2, h3{
     font-family: "Apple Chancery", cursive;
 }
 header{
     color: #000000;
-    background-color: #d5d5d5;
+    background: none;
 }
 header h1{
     padding: 1.5%;
@@ -113,6 +113,15 @@ table th{
 table tr{
     text-align: center;
     padding: 1%;
+}
+footer{
+    position: fixed;
+    left: 10%;
+    bottom: 0;
+    width: 80%;
+    background-color: #307227;
+    color: white;
+    text-align: center;
 }
 @media (max-width: 1100px){
     main ul{

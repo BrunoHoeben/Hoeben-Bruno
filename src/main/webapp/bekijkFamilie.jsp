@@ -14,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>overzicht</title>
+    <title>bekijkFamilie</title>
     <link rel="stylesheet" href="bomenStyle.css">
     <link rel="icon" type="image/x-icon" href="fotos/favicon.jpg">
 </head>
@@ -26,8 +26,8 @@
             <ul>
                 <li><a href="BoomServlet?command=index">home</a></li>
                 <li><a href="BoomServlet?command=voegToe">voeg toe</a></li>
-                <li><a class="active" href="BoomServlet?command=overzicht">overzicht</a></li>
-                <li><a href="BoomServlet?command=zoek">zoek</a></li>
+                <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
+                <li><a class="active" href="BoomServlet?command=zoek">zoek</a></li>
             </ul>
         </nav>
     </header>
@@ -43,41 +43,17 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="boom" items="${bomen}">
+            <c:forEach var="boom" items="${bekijkFamilie}">
                 <tr>
                     <td>${boom.soortnaam}</td>
                     <td>${boom.familienaam}</td>
                     <td>${boom.aantal}</td>
                     <td><a href="BoomServlet?command=pasAan&ID=${boom.ID}">Pas aan</a></td>
                     <td><a href="BoomServlet?command=verwijderbevestiging&verwijderID=${boom.ID}">Verwijder</a></td>
-                    <%--
-                    <td><a href="BeerServlet?command=pasAan&id=${bieren.idBier}">Pas aan</a></td>
-                    <td><a href="BeerServlet?command=verwijderbevestiging&remove=${bieren.idBier}">Verwijder</a></td>
-                </tr>
-            </c:forEach>
-                String tableData = "";
-                ArrayList<Boom> boomList = (ArrayList<Boom>) request.getAttribute("bomen");
-                for (Boom boom : boomList){
-                    tableData += String.format("<tr><td>%s</td><td>%s</td><td>%d</td><td>%s</td><td>%s</td>"
-                            , boom.getSoortnaam(), boom.getFamilienaam(), boom.getAantal(), "pas aan", "verwijder");
-                }
-
-
-            </tbody>
-            <tbody>
-            <c:forEach var="bieren" items="${bieren}">
-                <tr>
-                    <td>${bieren.naamBier}</td>
-                    <td>${bieren.soortBier}</td>
-                    <td>${bieren.alcoholpercentage}</td>
-                    <td><a href="BeerServlet?command=pasAan&id=${bieren.idBier}">Pas aan</a></td>
-                    <td><a href="BeerServlet?command=verwijderbevestiging&remove=${bieren.idBier}">Verwijder</a></td>
-                    --%>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
-        <p>De boomsoort waar je het meeste van hebt ${meesteBomen}</p>
     </main>
     <footer>
         <p></p>

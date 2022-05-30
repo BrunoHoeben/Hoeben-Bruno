@@ -23,13 +23,15 @@
         <nav>
             <ul>
                 <li><a href="BoomServlet?command=index">home</a></li>
-                <li><a class="BoomServlet?command=voegToe" href="voegToe.jsp">voeg toe</a></li>
+                <li><a class="active" href="BoomServlet?command=voegToe">voeg toe</a></li>
                 <li><a href="BoomServlet?command=overzicht">overzicht</a></li>
+                <li><a href="BoomServlet?command=zoek">zoek</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <h3>voeg hier een boom toe</h3>
+        <p>${foutmelding}</p>
         <form method="post" action="BoomServlet" novalidate>
             <ul>
                 <li>
@@ -47,16 +49,19 @@
                 <li>
                     <label for="aantal">aantal:</label>
                     <p></p>
-                    <input type="number" id="aantal" name="aantal" min="0" required>
+                    <input type="number" id="aantal" name="aantal" min="1" value="1" required>
                     <p></p>
                 </li>
                 <li>
-                    <input type="hidden" name="command" value="form">
+                    <input type="hidden" name="command" value="formVoegToe">
                     <button type="submit">voeg toe</button>
                 </li>
             </ul>
         </form>
     </main>
+    <footer>
+        <p></p>
+    </footer>
 </div>
 </body>
 </html>
